@@ -5,7 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginForm extends JFrame implements ActionListener {
+public class LoginForm extends JFrame {
+
     private JTextField emailField;
     private JTextField passwordField;
 
@@ -22,7 +23,17 @@ public class LoginForm extends JFrame implements ActionListener {
         JLabel passwordLabel = new JLabel("Password:");
         passwordField = new JTextField();
         JButton registerButton = new JButton("Registrar");
-        registerButton.addActionListener(this);
+        
+        registerButton.addActionListener((e) -> {
+            String email = emailField.getText();
+            String password = passwordField.getText();
+
+            if (email.equals("alumno@ulp.edu.ar") && password.equals("12345678")) {
+                JOptionPane.showMessageDialog(this, "¡Bienvenido!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos");
+            }
+        });
 
         panel.add(emailLabel);
         panel.add(emailField);
@@ -33,17 +44,5 @@ public class LoginForm extends JFrame implements ActionListener {
 
         add(panel);
         setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String email = emailField.getText();
-        String password = passwordField.getText();
-
-        if (email.equals("alumno@ulp.edu.ar") && password.equals("12345678")) {
-            JOptionPane.showMessageDialog(this, "¡Bienvenido!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos");
-        }
     }
 }
